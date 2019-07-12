@@ -1,5 +1,6 @@
 import { markTaskAsComplete } from "../../constants/queries";
 import { GraphQLClient } from "graphql-request";
+import { host } from "../../constants/host";
 
 import GetTodoList from "./GetTodoList";
 
@@ -16,10 +17,7 @@ const MakeComplete = (item, { state, dispatch }) => {
       variables: { id, complete: !completed }
     })
   };
-  const client = new GraphQLClient(
-    "http://192.168.88.129:3000/graphql",
-    options
-  );
+  const client = new GraphQLClient(host, options);
   client
     .request()
     .then(() => GetTodoList({ state, dispatch }))

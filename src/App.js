@@ -26,8 +26,6 @@ const App = () => {
   const initialState = useContext(Context);
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const { state } = useContext(Context);
-  console.log(state);
   return (
     <Context.Provider value={{ state, dispatch }}>
       <CreateTodo />

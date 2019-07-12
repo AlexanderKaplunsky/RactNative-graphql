@@ -1,5 +1,6 @@
 import { LIST_TODO } from "../../constants/queries";
 import { GraphQLClient } from "graphql-request";
+import { host } from "../../constants/host";
 
 const GetTodoList = ({ state, dispatch }) => {
   const options = {
@@ -17,10 +18,7 @@ const GetTodoList = ({ state, dispatch }) => {
       }
     })
   };
-  const client = new GraphQLClient(
-    "http://192.168.88.129:3000/graphql",
-    options
-  );
+  const client = new GraphQLClient(host, options);
   client
     .request()
     .then(data => dispatch({ type: "LOAD_TODO_LIST", payload: data.ListTodos }))

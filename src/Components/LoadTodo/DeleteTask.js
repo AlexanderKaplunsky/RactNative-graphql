@@ -1,10 +1,10 @@
 import { deleteTask } from "../../constants/queries";
 import { GraphQLClient } from "graphql-request";
+import { host } from "../../constants/host";
 
 import GetTodoList from "./GetTodoList";
 
 const DeleteTask = (id, { state, dispatch }) => {
-  console.log(typeof id);
   const options = {
     method: "POST",
     headers: {
@@ -16,10 +16,7 @@ const DeleteTask = (id, { state, dispatch }) => {
       variables: { id }
     })
   };
-  const client = new GraphQLClient(
-    "http://192.168.88.129:3000/graphql",
-    options
-  );
+  const client = new GraphQLClient(host, options);
   client
     .request()
     .then(() => GetTodoList({ state, dispatch }))

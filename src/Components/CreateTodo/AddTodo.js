@@ -1,5 +1,6 @@
 import { AddTask } from "../../constants/queries";
 import { GraphQLClient } from "graphql-request";
+import { host } from "../../constants/host";
 
 import GetTodoList from "../LoadTodo/GetTodoList";
 
@@ -15,10 +16,7 @@ const AddTodo = (description, { state, dispatch }) => {
       variables: { description, complete: false, priority: 1 }
     })
   };
-  const client = new GraphQLClient(
-    "http://192.168.88.129:3000/graphql",
-    options
-  );
+  const client = new GraphQLClient(host, options);
   client
     .request()
     .then(() => GetTodoList({ state, dispatch }))
